@@ -1,0 +1,24 @@
+= Serialize for Rails
+
+Rails already supports serialization of attributes, but it can only do Yaml.
+This gem upgrades the default Rails serialize method so you can serialize into
+yaml, json, xml and with marshal (Ruby binary format). It also supports gzipping
+the output if you want it to take up less space.
+
+Format can be one of the following:
+
+    :yaml, :json, :xml, :marshal
+
+Yaml is the default, and serialize will behave just like normal if you don't use
+any of the new options.
+
+Example usage:
+
+    class Mouse < ActiveRecord::Base
+      serialize :info, Hash, :format => :json
+      serialize :data, :format => :xml, :gzip => true
+    end
+
+When you use gzip you __must__ use a binary-compatible column type such
+as `BLOB` (MySQL) or `bytea` (PostgreSQL). If you don't use gzip, `text` is
+recommended to allow strings of arbitrary length.
