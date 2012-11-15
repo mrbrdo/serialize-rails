@@ -19,6 +19,6 @@ Example usage:
       serialize :data, :format => :xml, :gzip => true
     end
 
-When you use gzip you __must__ use a binary-compatible column type such
+When you use gzip you *must* use a binary-compatible column type such
 as `BLOB` (MySQL) or `bytea` (PostgreSQL). If you don't use gzip, `text` is
 recommended to allow strings of arbitrary length.
