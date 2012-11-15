@@ -45,16 +45,18 @@ module ActiveRecord
           coder = if [:load, :dump].all? { |x| class_name.respond_to?(x) }
                     class_name
                   else
-                    case options[:format]
-                    when :json
-                      Coders::JSONColumn.new(class_name)
-                    when :marshal
-                      Coders::MarshalColumn.new(class_name)
-                    when :xml
-                      Coders::XMLColumn.new(class_name, options[:ox_options])
+                    upcase_formats = [:json, :xml, :yaml]
+                    coder_class = if upcase_formats.include?(options[:format])
+                      options[:format].to_s.upcase
                     else
-                      Coders::YAMLColumn.new(class_name)
+                      options[:format].to_s.camelize
                     end
+                    coder_class = begin
+                      "ActiveRecord::Coders::#{coder_class}Column".constantize
+                    rescue
+                      Coders::YAMLColumn
+                    end
+                    coder_class.new(class_name)
                   end
 
           coder = Coders::GzipColumn.new(coder) if options[:gzip]
