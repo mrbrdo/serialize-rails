@@ -3,7 +3,7 @@ require 'ox'
 module ActiveRecord
   module Coders # :nodoc:
     class XMLColumn # :nodoc:
-      RESCUE_ERRORS = [ ArgumentError, SyntaxError ]
+      RESCUE_ERRORS = [ ArgumentError, SyntaxError, Ox::ParseError ]
 
       attr_accessor :object_class, :options
 
