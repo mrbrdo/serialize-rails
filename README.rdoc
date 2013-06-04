@@ -1,5 +1,14 @@
 = Serialize for Rails
 
+== Rails 4 note
+
+There were some internal changes in Rails 4 regarding the serialize method. These changes seem
+to affect how serialize works in combination with binary column types such as bytea. For the
+moment I do not recommend using binary column types in combination with this gem on Rails 4. If
+you want to know more see https://github.com/rails/rails/issues/10830#issuecomment-18883754
+
+== Description and use
+
 Rails already supports serialization of attributes, but it can only do Yaml.
 This gem upgrades the default Rails serialize method so you can serialize into
 yaml, json, xml and with marshal (Ruby binary format). It also supports gzipping
