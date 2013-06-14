@@ -45,7 +45,7 @@ module ActiveRecord
           coder = if [:load, :dump].all? { |x| class_name.respond_to?(x) }
                     class_name
                   else
-                    upcase_formats = [:json, :xml, :yaml]
+                    upcase_formats = [:json, :yaml]
                     coder_class = if upcase_formats.include?(options[:format])
                       options[:format].to_s.upcase
                     else

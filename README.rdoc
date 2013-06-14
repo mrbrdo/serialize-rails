@@ -11,12 +11,12 @@ you want to know more see https://github.com/rails/rails/issues/10830#issuecomme
 
 Rails already supports serialization of attributes, but it can only do Yaml.
 This gem upgrades the default Rails serialize method so you can serialize into
-yaml, json, xml and with marshal (Ruby binary format). It also supports gzipping
+yaml, json and with marshal (Ruby binary format). It also supports gzipping
 the output if you want it to take up less space.
 
 Format can be one of the following:
 
-    :yaml, :json, :xml, :marshal
+    :yaml, :json, :marshal
 
 Yaml is the default, and serialize will behave just like normal if you don't use
 any of the new options.
@@ -25,7 +25,7 @@ Example usage:
 
     class Mouse < ActiveRecord::Base
       serialize :info, Hash, :format => :json
-      serialize :data, :format => :xml, :gzip => true
+      serialize :data, :format => :yaml, :gzip => true
     end
 
 When you use gzip you *must* use a binary-compatible column type such
