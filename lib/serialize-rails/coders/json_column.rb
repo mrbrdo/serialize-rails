@@ -3,7 +3,7 @@ require 'json'
 module ActiveRecord
   module Coders # :nodoc:
     class JSONColumn # :nodoc:
-      RESCUE_ERRORS = [ ArgumentError, JSON::JSONError ]
+      RESCUE_ERRORS = [ ArgumentError, ::JSON::JSONError ]
 
       attr_accessor :object_class
 
